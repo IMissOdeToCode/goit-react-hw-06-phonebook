@@ -6,7 +6,9 @@ import initialState from '../utils/initialState';
 import css from './ContactsForm.module.scss';
 
 const ContactsForm = ({ onSubmit }) => {
-  const [state, setState] = useState({ ...initialState });
+  const [state, setState] = useState(() => {
+    return { ...initialState };
+  });
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
