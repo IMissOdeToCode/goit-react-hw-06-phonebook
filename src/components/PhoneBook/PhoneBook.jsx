@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, deleteContact, setFilter } from 'redux/actions';
 
 import Notiflix from 'notiflix';
 
@@ -8,25 +7,21 @@ import ContactsList from '../ContactsList/ContactsList';
 import ContactsFilter from '../ContactsFilter/ContactsFilter';
 import ContactsForm from '../ContactsForm/ContactsForm';
 
-// import defaultContacts from '../utils/contacts';
+import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
+import { setFilter } from 'redux/filter/filter-actions';
 
-import { getFilter, getFilteredContact, getAllContacts } from 'redux/selectors';
+import { getAllContacts } from 'redux/contacts/contacts-selectors';
+import { getFilter, getFilteredContact } from 'redux/filter/filter-selectors';
 
 import css from './PhoneBook.module.scss';
 
 const PhoneBook = () => {
+  const dispatch = useDispatch();
+
   const contacts = useSelector(getFilteredContact);
+  const filter = useSelector(getFilter);
   const allContacts = useSelector(getAllContacts);
   const isContacts = Boolean(contacts.length);
-
-  const filter = useSelector(getFilter);
-  // const [contacts, setContacts] = useState(() => {
-  //   const contacts = JSON.parse(window.localStorage.getItem('my-contacts'));
-  //   return contacts ? contacts : [...defaultContacts];
-  // });
-  // const [filter, setFilter] = useState('');
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const write = JSON.stringify(contacts);
