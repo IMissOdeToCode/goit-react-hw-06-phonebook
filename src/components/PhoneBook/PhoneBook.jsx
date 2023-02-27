@@ -7,8 +7,8 @@ import ContactsList from '../ContactsList/ContactsList';
 import ContactsFilter from '../ContactsFilter/ContactsFilter';
 import ContactsForm from '../ContactsForm/ContactsForm';
 
-import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
-import { setFilter } from 'redux/filter/filter-actions';
+import { addContact, deleteContact } from '../../redux/contacts/contacts-slice';
+import { setFilter } from '../../redux/filter/filter-slice';
 
 import { getAllContacts } from 'redux/contacts/contacts-selectors';
 import { getFilter, getFilteredContact } from 'redux/filter/filter-selectors';

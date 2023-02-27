@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-// import store from '../redux/store';
+
 import { PersistGate } from 'redux-persist/integration/react';
 
 import PhoneBook from './PhoneBook/PhoneBook';

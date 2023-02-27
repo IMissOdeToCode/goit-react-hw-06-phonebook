@@ -3,8 +3,8 @@ import { persistReducer } from 'redux-persist';
 
 import storage from 'redux-persist/lib/storage';
 
-import contactsReducer from './contacts/contacts-reducer';
-import filterReducer from './filter/filter-reducer';
+import contactsReducer from './contacts/contacts-slice';
+import filterReducer from './filter/filter-slice';
 
 export const rootReducer = combineReducers({
   contacts: contactsReducer,
