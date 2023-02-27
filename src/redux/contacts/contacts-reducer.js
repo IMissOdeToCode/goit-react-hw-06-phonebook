@@ -1,4 +1,6 @@
-import { ADD_CONTACT, DELETE_CONTACT } from './contacts-types';
+import { createReducer } from '@reduxjs/toolkit';
+import { addContact, deleteContact } from './contacts-actions';
+// import { ADD_CONTACT, DELETE_CONTACT } from './contacts-types';
 
 const initialStore = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -7,17 +9,23 @@ const initialStore = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const contactsReducer = (store = initialStore, { type, payload }) => {
-  switch (type) {
-    case ADD_CONTACT:
-      return [...store, payload];
-
-    case DELETE_CONTACT:
-      return store.filter(contact => contact.id !== payload);
-
-    default:
-      return store;
-  }
-};
+const contactsReducer = createReducer(initialStore, {
+  [addContact]: (store, { payload }) => [...store, payload],
+  [deleteContact]: (store, { payload }) =>
+    store.filter(contact => contact.id !== payload),
+});
 
 export default contactsReducer;
+
+// const contactsReducer = (store = initialStore, { type, payload }) => {
+//   switch (type) {
+//     case ADD_CONTACT:
+//       return [...store, payload];
+
+//     case DELETE_CONTACT:
+//       return store.filter(contact => contact.id !== payload);
+
+//     default:
+//       return store;
+//   }
+// };
