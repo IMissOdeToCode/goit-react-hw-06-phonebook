@@ -1,15 +1,24 @@
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contacts/contacts-slice';
+
 import PropTypes from 'prop-types';
 
 import css from './ContactsList.module.scss';
 
 const ContactsList = ({ contacts, removeContact }) => {
+  const dispatch = useDispatch();
+  const handleDeleteContact = id => {
+    const action = deleteContact(id);
+    dispatch(action);
+  };
+
   const contactsList = contacts.map(({ id, name, number }) => (
     <li className={css.contactItem} key={id}>
       {name} {number}
       <button
         className={css.delButton}
         type="button"
-        onClick={() => removeContact(id)}
+        onClick={() => handleDeleteContact(id)}
       >
         delete
       </button>
@@ -31,5 +40,4 @@ ContactsList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ),
-  removeContact: PropTypes.func.isRequired,
 };
